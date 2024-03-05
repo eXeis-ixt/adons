@@ -45,18 +45,24 @@
                         @if ($blogs->isNotEmpty())
                             @foreach ($blogs as $blog)
 
-                            <div class="col-md-6" data-aos="fade">
+                            <div class="col-md-6 " data-aos="fade">
                                 <article class="blog-post">
                                     <div class="post-slider slider-sm rounded">
-                                            <a wire:navigate href="{{route('show.blog',$blog->slug)}}">
-                                        <img loading="lazy" decoding="async" src="{{asset('storage/'.$blog->image)}}" alt="{{$blog->title}}">
-                                    </a>
+                                        @if ($blog->image != '')
+
+                                        <a wire:navigate href="{{route('show.blog',$blog->slug)}}">
+                                    <img loading="lazy" decoding="async" src="{{asset('storage/'.$blog->image)}}" alt="{{$blog->title}}">
+                                </a>
+                                        @else
+                                        <img loading="lazy" decoding="async" src="{{asset('images/what-is-adons.webp')}}" alt="">
+
+                                        @endif
 
                                     </div>
                                     <div class="pt-4">
-                                        <p class="mb-3">{{ \Carbon\Carbon::parse($blog->created_at)->format('d M, Y') }}</p>
+                                        <p class="mb-3" class="g-t">{{ \Carbon\Carbon::parse($blog->created_at)->format('d M, Y') }}</p>
                                         {{-- <p class="mb-3">{{$blog->scopePublished()}}</p> --}}
-                                        <h2 class="h4"><a class="text-black" wire:navigate href="{{route('show.blog',$blog->slug)}}">{{$blog->title}}</a></h2>
+                                        <h4 class=""><a  class="text-black" wire:navigate href="{{route('show.blog',$blog->slug)}}">{{$blog->title}}</a></h4>
                                         {{-- <p>Heading example Here is example of hedings. You can use this heading by following …</p>  --}}
                                         <a wire:navigate href="{{route('show.blog',$blog->slug)}}" class="text-primary fw-bold" aria-label="Read the full article by clicking here">Read More</a>
                                     </div>
@@ -92,7 +98,7 @@
 				</div>
                 @endif
 				<!-- tags -->
-				<div class="widget widget-tags">
+				{{-- <div class="widget widget-tags">
 					<h4 class="widget-title"><span>Tags</span></h4>
 					<ul class="list-inline widget-list widget-list-inline taxonomies-list">
 						<li class="list-inline-item"><a href="#!">Booth</a>
@@ -110,51 +116,38 @@
 						<li class="list-inline-item"><a href="#!">Video</a>
 						</li>
 					</ul>
-				</div>
+				</div> --}}
 				<!-- latest post -->
+                @if ($latests->isNotEmpty())
+
 				<div class="widget">
 					<h5 class="widget-title"><span>Latest Article</span></h5>
 					<!-- post-item -->
+                    @foreach ($latests as $latest)
+
 					<ul class="list-unstyled widget-list">
 						<li class="d-flex widget-post align-items-center">
-							<a class="text-black" href="/blog/elements/">
+							<a class="text-black" wire:navigate href="{{route('show.blog',$latest->slug)}}">
 								<div class="widget-post-image flex-shrink-0 me-3">
-									<img class="rounded" loading="lazy" decoding="async" src="images/blog/post-4.jpg" alt="Post Thumbnail">
+                                    @if ($latest->image != '')
+									<img class="rounded" loading="lazy" decoding="async" src="{{asset('storage/'.$latest->image)}}" alt="Post Thumbnail">
+                                    @else
+                                    <img loading="lazy" decoding="async" src="{{asset('images/what-is-adons.webp')}}" alt="">
+                                    @endif
 								</div>
 							</a>
 							<div class="flex-grow-1">
-								<h5 class="h6 mb-0"><a class="text-black" href="blog-details.html">Elements That You Can Use To Create A New Post On This Template.</a></h5>
-								<small>March 15, 2020</small>
+								<h5 class="h6 mb-0"><a class="text-black" href="{{route('show.blog',$latest->slug)}}">{{$latest->getExcerpt()}}</a></h5>
+								<small>{{ \Carbon\Carbon::parse($latest->created_at)->format('d M, Y') }}</small>
 							</div>
 						</li>
 					</ul>
-					<ul class="list-unstyled widget-list">
-						<li class="d-flex widget-post align-items-center">
-							<a class="text-black" href="/blog/post-1/">
-								<div class="widget-post-image flex-shrink-0 me-3">
-									<img class="rounded" loading="lazy" decoding="async" src="images/blog/post-1.jpg" alt="Post Thumbnail">
-								</div>
-							</a>
-							<div class="flex-grow-1">
-								<h5 class="h6 mb-0"><a class="text-black" href="blog-details.html">Cheerful Loving Couple Bakers Drinking Coffee</a></h5>
-								<small>March 14, 2020</small>
-							</div>
-						</li>
-					</ul>
-					<ul class="list-unstyled widget-list">
-						<li class="d-flex widget-post align-items-center">
-							<a class="text-black" href="/blog/post-2/">
-								<div class="widget-post-image flex-shrink-0 me-3">
-									<img class="rounded" loading="lazy" decoding="async" src="images/blog/post-2.jpg" alt="Post Thumbnail">
-								</div>
-							</a>
-							<div class="flex-grow-1">
-								<h5 class="h6 mb-0"><a class="text-black" href="blog-details.html">Cheerful Loving Couple Bakers Drinking Coffee</a></h5>
-								<small>March 14, 2020</small>
-							</div>
-						</li>
-					</ul>
+                    @endforeach
+
+
 				</div>
+                @endif
+
 				<!-- Social -->
 
 			</div>

@@ -14,8 +14,13 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('image')->nullable();
             $table->string('slug')->unique();
+            $table->boolean('status')->default(false);
             $table->string('short_des');
+            $table->string('meta_description')->nullable();
+            $table->string('keywords')->nullable();
+
             $table->text('des');
             $table->text('icon_class');
             $table->timestamps();

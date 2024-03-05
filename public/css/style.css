@@ -1,11 +1,6 @@
-/**
- * WEBSITE: https://themefisher.com
- * TWITTER: https://twitter.com/themefisher
- * FACEBOOK: https://www.facebook.com/themefisher
- * GITHUB: https://github.com/themefisher/
- */
 
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
 /*!
  * Bootstrap v5.0.2 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -3993,6 +3988,22 @@ textarea.form-control-lg {
   margin-right: 0;
   margin-left: 0;
 }
+
+.card-1{
+
+    border:none;
+}
+
+.user-content p{
+    margin-top:5px;
+    font-size:12px;
+}
+
+
+.ratings i{
+    color:blue;
+}
+
 .card > .list-group {
   border-top: inherit;
   border-bottom: inherit;
@@ -8648,7 +8659,7 @@ textarea.form-control-lg {
 /*  typography */
 body {
   line-height: 1.7;
-  font-family: "Rubik", sans-serif;
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 15px;
   font-weight: 400;
@@ -8666,7 +8677,7 @@ p, .paragraph {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   color: black;
-  font-family: "Rubik", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 700;
 }
 
@@ -8750,6 +8761,13 @@ h6, .h6 {
   transform: rotate(0deg);
 }
 
+
+.g-t{
+  background: -webkit-linear-gradient(45deg,#5468fb, #8838ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .btn-primary {
   background: #5468fb;
   color: #fff;
@@ -8771,11 +8789,11 @@ h6, .h6 {
   background-color: #5468fb;
 }
 .btn-outline-primary:hover, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary:focus, .btn-outline-primary.focus {
-  background: #e0f2e5;
+  background: #96AFFF;
   color: #fff;
 }
 .btn-outline-primary.w-100:hover, .btn-outline-primary.d-block:hover, .btn-outline-primary.d-flex:hover, .btn-outline-primary.effect-none:hover {
-  background: #e0f2e5;
+  background: #96AFFF;
 }
 
 .nav-pills .nav-link:hover {
@@ -8903,8 +8921,19 @@ a:hover {
 }
 
 .text-black {
-  color: #040404 !important;
+  color: #100d14 !important;
 }
+
+
+.gray{
+    filter: grayscale(100%);
+    transition: 0.2s ease-in;
+    cursor: pointer;
+}
+.gray:hover{
+    filter: grayscale(0%);
+}
+
 
 .text-black a:hover,
 a.text-black:hover {
@@ -8960,6 +8989,7 @@ a.text-black:hover {
 }
 .content strong {
   font-weight: 800;
+  color: #233242;
 }
 .content a {
   border-bottom: 1px dotted #5468fb;
@@ -9258,7 +9288,7 @@ blockquote::before {
 }
 
 .navbar-brand {
-  font-family: "Rubik", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 30px;
 }
 
@@ -9525,7 +9555,8 @@ blockquote::before {
 }
 .difference-of-us-item:nth-child(even) .icon {
   color: #5468fb;
-  background-color: rgba(81, 181, 109, 0.1);
+  background-color: #5468fb;
+  /* background-color: rgba(81, 181, 109, 0.1); */
 }
 
 .has-shapes {
@@ -9729,7 +9760,7 @@ blockquote::before {
   border-radius: 50%;
   color: #fff;
   position: relative;
-  font-family: "Rubik", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .loan-steps .count::after {
   position: absolute;
@@ -9794,8 +9825,11 @@ blockquote::before {
   margin-bottom: 20px;
   text-align: center;
   color: #fff;
-  background-color: #5468fb;
+    background: linear-gradient( #5468fb, #6f87fc);
+    /* background: linear-gradient( #1a1a1a, #303030); */
+
 }
+
 
 .icon-lg {
   height: unset !important;

@@ -1,4 +1,6 @@
 <main>
+    @if ($faqs->isNotEmpty())
+
     <section class="section">
         <div class="container">
           <div class="row justify-content-center mb-5">
@@ -46,5 +48,6 @@
           </div>
         </div>
       </section>
+      @endif
 
 </main>

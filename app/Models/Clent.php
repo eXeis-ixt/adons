@@ -5,19 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Team extends Model
+class Clent extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'name',
-        'position',
-        'email',
-        'number',
+        'brand',
         'image',
-        'fb',
-        'tw',
         'status',
-        'in',
     ];
 }

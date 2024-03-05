@@ -21,6 +21,7 @@ use Symfony\Contracts\Service\Attribute\Required;
 class PortfolioResource extends Resource
 {
     protected static ?string $model = Portfolio::class;
+    protected static ?string $navigationGroup = 'Contents';
 
     protected static ?string $navigationIcon = 'heroicon-o-link';
 
@@ -29,7 +30,7 @@ class PortfolioResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->required()->label('Project name')->placeholder('name of the project'),
-                TextInput::make('url')->required(),
+                TextInput::make('url')->url(),
                 FileUpload::make('image')->disk('public')->image()->imageEditor()->columnSpanFull()->label('Upload Image (Image should be 1920x1988)')->imageCropAspectRatio('0.96:1'),
             ]);
     }

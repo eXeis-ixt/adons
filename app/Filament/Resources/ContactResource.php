@@ -20,6 +20,17 @@ class ContactResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-inbox';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor(): string | array | null
+    {
+        return static::getModel()::count() < 5 ? 'warning' : 'success';
+    }
+
+
     public static function form(Form $form): Form
     {
         return $form
@@ -35,12 +46,14 @@ class ContactResource extends Resource
                 TextColumn::make('name'),
                 TextColumn::make('email'),
                 TextColumn::make('message'),
+                TextColumn::make('service'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

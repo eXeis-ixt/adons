@@ -3,10 +3,27 @@
     <head>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-	<meta name="description" content="This is meta description">
-	<meta name="author" content="Themefisher">
+	<meta name="description" content="Innovate. Excel. Succeed!">
+    <meta name="author" content="Adons">
+    <meta name="keywords" content="Adons, Web design, Graphic design, Digital marketing, Bangladesh">
 	<link rel="shortcut icon" href="{{asset('images/Adnos-final-file.png')}}" type="image/x-icon">
 	<link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+    <meta property="og:title" content="Adons" />
+<meta property="og:description" content="Innovate. Excel. Succeed!" />
+<meta property="og:image" content="{{asset('images/Adnos-final-file.png')}}" />
+
+    <script type='application/ld+json'>
+        {
+          "@context": "http://www.schema.org",
+          "@type": "Organization",
+          "name": "Adons",
+          "url": "https://adons.org",
+          "logo": "{{asset('images/Adnos-final-file.png')}}",
+          "image": "{{asset('images/what-is-adons.webp')}}",
+          "description": "Adons, your one-stop destination for cutting-edge solutions in web development, graphic design, and digital marketing. At Adons, we believe in the power of creativity, innovation, and technology to transform your digital presence and propel your business to new heights."
+        }
+         </script>
 
 
 	<!-- # Google Fonts -->
@@ -15,6 +32,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
 
 	<!-- # CSS Plugins -->
+    @yield('css')
 	<link rel="stylesheet" href="plugins/slick/slick.css">
 	{{-- <link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css">
 	<link rel="stylesheet" href="plugins/font-awesome/brands.css">
@@ -45,11 +63,12 @@
                             <li class="nav-item"> <a wire:navigate class="nav-link" href="{{route('home')}}">Home</a></li>
                             <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('about')}}">About Us</a></li>
                             <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('service')}}">Services</a></li>
-                            <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('team')}}">Our Team</a></li>
+                            <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('portfolio')}}">Portfolio</a></li>
+                            {{-- <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('team')}}">Our Team</a></li> --}}
                             <li class="nav-item "><a wire:navigate class="nav-link " href="{{route('blog')}}">Blog</a></li>
-                            <li class="nav-item "><a wire:navigate class="nav-link " href="{{route('faq')}}">FAQ</a></li>
+                            {{-- <li class="nav-item "><a wire:navigate class="nav-link " href="{{route('faq')}}">FAQ</a></li> --}}
                         </ul>
-                        <a wire:navigate href="{{route('contact')}}" class="btn btn-outline-primary">Contact Us</a>
+                        <a wire:navigate href="{{route('contact')}}" class="btn btn-outline-primary">BOOK OUR CONSULTATION</a>
                     </div>
                 </div>
             </nav>
@@ -127,15 +146,21 @@
                 </div>
 
             </div>
+            <br>
+            <div style="text-align: center">
+                All © Copyright reserved to <a href="{{route('home')}}">Adons</a> | 2023 - {{date('Y')}}
+            </div>
         </footer>
 
         @livewireScripts()
 
         <!-- # JS Plugins -->
+        @yield('js')
         <script src="plugins/jquery/jquery.min.js"></script>
         <script src="plugins/bootstrap/bootstrap.min.js"></script>
 
         <!-- Main Script -->
+
         <script src="js/script.js"></script>
 
     </body>

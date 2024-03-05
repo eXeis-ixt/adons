@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-	<meta name="description" content="This is meta description">
-	<meta name="author" content="Themefisher">
-	<link rel="shortcut icon" href="{{asset('images/Adnos-final-file.png')}}" type="image/x-icon">
-	<link rel="icon" href="images/favicon.png" type="image/x-icon">
-
-
-	<!-- # Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
-
-	<!-- # CSS Plugins -->
-	<link rel="stylesheet" href="plugins/slick/slick.css">
-	<link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css">
-	<link rel="stylesheet" href="plugins/font-awesome/brands.css">
-	<link rel="stylesheet" href="plugins/font-awesome/solid.css">
-
-	<!-- # Main Style Sheet -->
-	<link rel="stylesheet" href="css/style.css">
-
-    @livewireStyles()
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+        <meta name="description" content="This is meta description">
+        <meta name="author" content="Themefisher">
+        <link rel="shortcut icon" href="{{asset('images/Adnos-final-file.png')}}" type="image/x-icon">
+        <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
 
+        <!-- # Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
 
-        <title>{{ $title ?? 'Adons' }}</title>
+        <!-- # CSS Plugins -->
+        <link rel="stylesheet" href="plugins/slick/slick.css">
+        {{-- <link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css">
+        <link rel="stylesheet" href="plugins/font-awesome/brands.css">
+        <link rel="stylesheet" href="plugins/font-awesome/solid.css"> --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- # Main Style Sheet -->
+        <link rel="stylesheet" href="css/style.css">
+
+        @livewireStyles()
+
+
+
+            <title>{{ $title ?? 'Adons' }}</title>
     </head>
     <body>
 
@@ -44,11 +44,12 @@
                             <li class="nav-item"> <a wire:navigate class="nav-link" href="{{route('home')}}">Home</a></li>
                             <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('about')}}">About Us</a></li>
                             <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('service')}}">Services</a></li>
-                            <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('team')}}">Our Team</a></li>
+                            <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('portfolio')}}">Portfolio</a></li>
+                            {{-- <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('team')}}">Our Team</a></li> --}}
                             <li class="nav-item "><a wire:navigate class="nav-link " href="{{route('blog')}}">Blog</a></li>
-                            <li class="nav-item "><a wire:navigate class="nav-link " href="{{route('faq')}}">FAQ</a></li>
+                            {{-- <li class="nav-item "><a wire:navigate class="nav-link " href="{{route('faq')}}">FAQ</a></li> --}}
                         </ul>
-                        <a wire:navigate href="{{route('contact')}}" class="btn btn-outline-primary">Contact Us</a>
+                        <a wire:navigate href="{{route('contact')}}" class="btn btn-outline-primary">BOOK OUR CONSULTATION</a>
                     </div>
                 </div>
             </nav>
@@ -88,6 +89,19 @@
                                                 <input type="email" class="form-control shadow-none" name="email" id="contact_email">
                                             </div>
                                             <div class="form-group mb-4 pb-2">
+                                                <label for="exampleFormControlInput1" class="form-label">Select a service</label>
+
+                                                @if ($services->isNotEmpty())
+                                                <select select class="form-select text-black" name="service" id="">
+                                                        @foreach ($services as $service)
+                                                            <option class="text-black py-2" value="{{$service->title}}"> {{$service->title}} </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @endif
+
+
+                                                </div>
+                                            <div class="form-group mb-4 pb-2">
                                                 <label for="exampleFormControlTextarea1" class="form-label">Write Message</label>
                                                 <textarea class="form-control shadow-none" name="message" required id="exampleFormControlTextarea1" rows="3"></textarea>
                                             </div>
@@ -101,24 +115,29 @@
                                             <h4 class="h5">Still Have Questions?</h4>
                                             <div class="content">Call Us We Will Be Happy To Help
                                                 <br> <a href="tel:+8801971971854">+8801971971854</a>
-                                                <br>Monday - Friday
+                                                <br> <a href="tel:+8801905667600">+8801905667600</a>
+                                                <br>Saturday to Thursday
                                                 <br>9AM TO 8PM Dhaka time</div>
                                         </div>
                                         <div class="block mt-4">
-                                            <h4 class="h5">Narsingdi</h4>
-                                            <div class="content">Sadar.
+                                            <h4 class="h5">Dhaka</h4>
+                                            <div class="content">Bangladesh
 
                                         </div>
 
                                         <div class="block">
+                                            @if ($links->isNotEmpty())
+
                                             <ul class="list-unstyled list-inline my-4 social-icons">
-                                                <li class="list-inline-item me-3"><a title="Explorer Facebook Profile" class="text-black" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                                @foreach ($links as $link)
+
+                                                <li class="list-inline-item me-3"><a title="Explorer Facebook Profile" class="text-black" href="{{$link->url}}"><i class="fa-brands fa-{{$link->icon}}"></i></a>
                                                 </li>
-                                                <li class="list-inline-item me-3"><a title="Explorer Twitter Profile" class="text-black" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                                </li>
-                                                <li class="list-inline-item me-3"><a title="Explorer Instagram Profile" class="text-black" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                                                </li>
+                                                @endforeach
+
                                             </ul>
+                                            @endif
+
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +214,12 @@
                 </div>
 
             </div>
+            <br>
+            <div style="text-align: center">
+                All © Copyright reserved to <a href="{{route('home')}}">Adons</a> | 2023 - {{date('Y')}}
+            </div>
         </footer>
+
 
         @livewireScripts()
 

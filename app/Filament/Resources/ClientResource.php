@@ -2,36 +2,49 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\FaqResource\Pages;
-use App\Filament\Resources\FaqResource\RelationManagers;
-use App\Models\Faq;
+use App\Filament\Resources\ClientResource\Pages;
+use App\Filament\Resources\ClientResource\RelationManagers;
+use App\Models\Clent;
+use App\Models\Client;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
-class FaqResource extends Resource
+class ClientResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Contents';
+    protected static ?string $model = Clent::class;
 
-    protected static ?string $model = Faq::class;
+    protected static ?string $navigationIcon = 'heroicon-s-heart';
 
-    protected static ?string $navigationIcon = 'heroicon-o-book-open';
+    protected static ?string $navigationLabel = 'Client';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor(): string | array | null
+    {
+        return static::getModel()::count() < 5 ? 'warning' : 'success';
+    }
 
     public static function form(Form $form): Form
     {
         return $form
+
             ->schema([
-                TextInput::make('question'),
-                TextInput::make('ans'),
-                Toggle::make('status')->label('Active?'),
+                TextInput::make('brand')->required(),
+                FileUpload::make('image')->disk('public')->imageEditor()->columnSpan('full')->optimize('webp'),
+                Toggle::make('status')->default(true),
             ]);
     }
 
@@ -39,8 +52,8 @@ class FaqResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('question'),
-                TextColumn::make('ans'),
+                ImageColumn::make('image'),
+                TextColumn::make('brand'),
                 ToggleColumn::make('status')
             ])
             ->filters([
@@ -67,9 +80,9 @@ class FaqResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFaqs::route('/'),
-            'create' => Pages\CreateFaq::route('/create'),
-            'edit' => Pages\EditFaq::route('/{record}/edit'),
+            'index' => Pages\ListClients::route('/'),
+            'create' => Pages\CreateClient::route('/create'),
+            'edit' => Pages\EditClient::route('/{record}/edit'),
         ];
     }
 }

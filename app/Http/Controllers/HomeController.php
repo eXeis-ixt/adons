@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Contact;
 use App\Models\Service;
+use App\Models\socialMedia;
 use Illuminate\Http\Request;
+use App\Models\Portfolio;
 
 class HomeController extends Controller
 {
@@ -26,7 +28,12 @@ class HomeController extends Controller
     }
 
     public function contact(){
-        return view('livewire.show-contact-page');
+        $links = socialMedia::where('status', 1)->orderBy('created_at', 'ASC')->get();
+        $services = Service::where('status', 1)->orderBy('created_at', 'ASC')->get();
+        return view('livewire.show-contact-page', [
+            "services"=> $services,
+            "links"=> $links
+        ]);
     }
 
     public function store(Request $request){
@@ -35,6 +42,7 @@ class HomeController extends Controller
             'name' => 'required|max:32',
             'email' => 'required|email',
             'message' => 'required|max:413',
+            'service' => 'required|max:413',
 
             // 'collar' => 'required|string|required|max:255',
         ]);
@@ -42,6 +50,7 @@ class HomeController extends Controller
         $contact->name = $request->input('name');
         $contact->email = $request->input('email');
         $contact->message = $request->input('message');
+        $contact->service = $request->input('service');
 
         // $newBatman->collar = $request->input('collar');$newBatman->save();
         $contact->save();
@@ -50,4 +59,5 @@ class HomeController extends Controller
         // dd($request);
 
     }
+
 }

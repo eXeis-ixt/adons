@@ -1,4 +1,5 @@
 <main>
+
     <section class="page-header bg-tertiary">
         <div class="container">
             <div class="row">
@@ -62,6 +63,10 @@
         </div>
     </section>
 
+
+
+
+
     <section class="section">
         <div class="container">
             <div class="row justify-content-center">
@@ -95,49 +100,6 @@
     </section>
 
 
-    <section class="section teams bg-tertiary">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="section-title text-center">
-                        <p class="text-primary text-uppercase fw-bold mb-3">Questions You Have</p>
-                        <h1>Our roubust portfolio</h1>
-                        <p class="mb-0">
-                            <br>Our projects</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row position-relative">
-
-                    @if ($portfolios->isNotEmpty())
-                      @foreach ($portfolios as $p)
-
-
-                <div class="col-xl-3 col-lg-4 col-md-6 mt-4 shadow-sm">
-                    <div class="card bg-transparent border-0 text-center">
-                        <div class="card-img">
-                            <img loading="lazy" decoding="async" src="{{asset('storage/'.$p->image)}}" alt="Scarlet Pena" class="rounded w-100" width="300" height="332">
-                            <ul class="card-social list-inline">
-
-                                <li class="list-inline-item"><a class="instagram" target="_blank" href="{{url($p->url)}}"><i class="fas fa-link"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <h3>{{$p->name}}</h3>
-                            <p>Developed by Adons</p>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-
-
-                @endif
-
-
-            </div>
-        </div>
-    </section>
 
 
 </main>

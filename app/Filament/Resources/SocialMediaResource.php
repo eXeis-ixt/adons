@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\FaqResource\Pages;
-use App\Filament\Resources\FaqResource\RelationManagers;
-use App\Models\Faq;
+use App\Filament\Resources\SocialMediaResource\Pages;
+use App\Filament\Resources\SocialMediaResource\RelationManagers;
+use App\Models\SocialMedia;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -17,21 +17,19 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class FaqResource extends Resource
+class SocialMediaResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Contents';
+    protected static ?string $model = SocialMedia::class;
 
-    protected static ?string $model = Faq::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-book-open';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('question'),
-                TextInput::make('ans'),
-                Toggle::make('status')->label('Active?'),
+                TextInput::make('url')->label('Url')->url()->required(),
+                TextInput::make('icon')->required(),
+                Toggle::make('status')->default(true)
             ]);
     }
 
@@ -39,8 +37,8 @@ class FaqResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('question'),
-                TextColumn::make('ans'),
+                TextColumn::make('url'),
+                TextColumn::make('icon'),
                 ToggleColumn::make('status')
             ])
             ->filters([
@@ -48,7 +46,6 @@ class FaqResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -67,9 +64,9 @@ class FaqResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFaqs::route('/'),
-            'create' => Pages\CreateFaq::route('/create'),
-            'edit' => Pages\EditFaq::route('/{record}/edit'),
+            'index' => Pages\ListSocialMedia::route('/'),
+            'create' => Pages\CreateSocialMedia::route('/create'),
+            'edit' => Pages\EditSocialMedia::route('/{record}/edit'),
         ];
     }
 }

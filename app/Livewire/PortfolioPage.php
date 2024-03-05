@@ -5,14 +5,13 @@ namespace App\Livewire;
 use App\Models\Portfolio;
 use Livewire\Component;
 
-class AboutPage extends Component
+class PortfolioPage extends Component
 {
     public function render()
     {
         $portfolios = Portfolio::orderBy('created_at', 'DESC')->paginate(15);
-
-        return view('livewire.about-page',[
-            "portfolios"=> $portfolios
+        return view('livewire.portfolio-page', [
+            "portfolios"=> $portfolios,
         ]);
     }
 }

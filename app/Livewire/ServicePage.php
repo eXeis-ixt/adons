@@ -11,7 +11,7 @@ class ServicePage extends Component
     public function render()
     {
         $portfolios = Portfolio::orderBy('name', 'DESC')->get();
-        $services = Service::orderBy('title', 'DESC')->get();
+        $services = Service::where('status', 1)->orderBy('title', 'DESC')->get();
         return view('livewire.service-page',[
             "services"=> $services,
             "portfolios"=> $portfolios

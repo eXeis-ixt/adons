@@ -22,6 +22,7 @@ use Filament\Tables\Columns\TextColumn;
 class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
+    protected static ?string $navigationGroup = 'Contents';
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 

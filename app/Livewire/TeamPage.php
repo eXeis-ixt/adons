@@ -9,7 +9,7 @@ class TeamPage extends Component
 {
     public function render()
     {
-        $teams =  Team::orderBy('name', 'ASC')->get();
+        $teams =  Team::where('status', 1)->orderBy('name', 'ASC')->get();
         return view('livewire.team-page',[
             "teams"=> $teams
         ]);

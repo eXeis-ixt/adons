@@ -1,7 +1,3 @@
-{{-- <x-layout-app> </x-layout-app> --}}
-
-
-{{-- </x-components-layouts-app> --}}
 
 
 <!DOCTYPE html>
@@ -9,11 +5,16 @@
     <head>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-	<meta name="description" content="This is meta description">
-	<meta name="author" content="Themefisher">
-	<link rel="shortcut icon" href="{{asset('images/favicon.png')}}" type="image/x-icon">
-	<link rel="icon" href="images/favicon.png" type="image/x-icon">
+	<meta name="description" content="{{$service->meta_description}}">
+    <meta name="keywords" content="{{$service->keywords}}">
+	<meta name="author" content="Adons">
+	<link rel="shortcut icon" href="{{asset('images/Adnos-final-file.png')}}" type="image/x-icon">
+	{{-- <link rel="icon" href="{{asset()}}" type="image/x-icon"> --}}
 
+
+    <meta property="og:title" content=" {{$service->title}} | Adons" />
+    <meta property="og:description" content="{{$service->short_des}}" />
+    <meta property="og:image" content="{{asset('storage/'.$service->image)}}" />
 
 	<!-- # Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,18 +51,19 @@
                             <li class="nav-item"> <a wire:navigate class="nav-link" href="{{route('home')}}">Home</a></li>
                             <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('about')}}">About Us</a></li>
                             <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('service')}}">Services</a></li>
-                            <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('team')}}">Our Team</a></li>
+                            <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('portfolio')}}">Portfolio</a></li>
+                            {{-- <li class="nav-item "> <a wire:navigate class="nav-link" href="{{route('team')}}">Our Team</a></li> --}}
                             <li class="nav-item "><a wire:navigate class="nav-link " href="{{route('blog')}}">Blog</a></li>
-                            <li class="nav-item "><a wire:navigate class="nav-link " href="{{route('faq')}}">FAQ</a></li>
+                            {{-- <li class="nav-item "><a wire:navigate class="nav-link " href="{{route('faq')}}">FAQ</a></li> --}}
                         </ul>
-                        <a wire:navigate href="{{route('contact')}}" class="btn btn-outline-primary">Contact Us</a>
+                        <a wire:navigate href="{{route('contact')}}" class="btn btn-outline-primary">BOOK OUR CONSULTATION</a>
                     </div>
                 </div>
             </nav>
         </header>
         <!-- /navigation -->
 
-
+{{--
 
         <main>
             <section class="page-header bg-tertiary">
@@ -101,6 +103,33 @@
                 </div>
             </section>
 
+
+            <div class="section">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-10">
+
+                      <div class="mb-1 text-center">
+                        <div class="post-slider rounded overflow-hidden">
+
+
+                            @if ($service->image != '')
+                            <img loading="lazy" decoding="async" src="{{asset('storage/'.$service->image)}}" alt="">
+                                @else
+
+                                <img loading="lazy" decoding="async" src="https://scontent-sin6-1.xx.fbcdn.net/v/t39.30808-6/356218380_109736572167272_2856917891741394543_n.png?_nc_cat=107&ccb=1-7&_nc_sid=783fdb&_nc_eui2=AeEdqj_3Fk7k9jHsKPwywL7lKXGXl2NzTGwpcZeXY3NMbEpM__J6JUV9uv3aUREi43XTaB64NeSI971qhfeF0jYk&_nc_ohc=PEKxHek5BLkAX8f7l1l&_nc_ht=scontent-sin6-1.xx&oh=00_AfDv9sMWTzvqE0ufK2V9gdyQlyx0Vyg7wfXSEuh3Pm2OmQ&oe=65CA72EB" alt="">
+                            @endif
+
+                        </div>
+                      </div>
+                      <div class="content">
+                        {!! $service->content !!}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             <section class="section-sm">
                 <div class="container">
                     <div class="row g-5">
@@ -116,60 +145,124 @@
             </section>
 
         </main>
+ --}}
 
 
 
+ <div class="section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          {{-- <div class="mb-5">
+            <h2 class="mb-4" style="line-height:1.5">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h2>
+            <span>15 March 2020 <span class="mx-2">/</span> </span>
+            <p class="list-inline-item">Category : <a href="#!" class="ml-1">Photography </a>
+            </p>
+            <p class="list-inline-item">Tags : <a href="#!" class="ml-1">Photo </a> ,<a href="#!"
+                class="ml-1">Image </a>
+            </p>
+          </div> --}}
+          <div class="mb-5 text-center">
+            <div class="post-slider rounded overflow-hidden">
+                @if ($service->image != '')
+                <img loading="lazy" decoding="async" src="{{asset('storage/'.$service->image)}}" alt="Post Thumbnail">
 
-        <footer class="section-sm bg-tertiary">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <div class="col-lg-2 col-md-4 col-6 mb-4">
-                        <div class="footer-widget">
-                            <h5 class="mb-4 text-primary font-secondary">Service</h5>
-                            <ul class="list-unstyled">
-                                <li class="mb-2"><a href="service-details.html">Digital Marketing</a>
-                                </li>
-                                <li class="mb-2"><a href="service-details.html">Web Design</a>
-                                </li>
-                                <li class="mb-2"><a href="service-details.html">Logo Design</a>
-                                </li>
-                                <li class="mb-2"><a href="service-details.html">Graphic Design</a>
-                                </li>
-                                <li class="mb-2"><a href="service-details.html">SEO</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-6 mb-4">
-                        <div class="footer-widget">
-                            <h5 class="mb-4 text-primary font-secondary">Quick Links</h5>
-                            <ul class="list-unstyled">
-                                <li class="mb-2"><a wire:navigate href="{{route('about')}}">About Us</a>
-                                </li>
-                                <li class="mb-2"><a wire:navigate href="#">Contact Us</a>
-                                </li>
-                                <li class="mb-2"><a wire:navigate href="{{route('blog')}}">Blog</a>
-                                </li>
-                                <li class="mb-2"><a wire:navigate href="{{route('team')}}">Team</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-6 mb-4">
-                        <div class="footer-widget">
-                            <h5 class="mb-4 text-primary font-secondary">Other Links</h5>
-                            <ul class="list-unstyled">
-                                <li class="list-inline-item me-4"><a class="text-black" href="privacy-policy.html">Privacy Policy</a>
-                                </li>
-                                <li class="list-inline-item me-4"><a class="text-black" href="terms.html">Terms &amp; Conditions</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                @else
+
+                <img loading="lazy" decoding="async" src="{{asset('images/what-is-adons.webp')}}" alt="Post Thumbnail">
+
+
+                @endif
+
 
             </div>
-        </footer>
+          </div>
+          <div class="content">
+            <h1>{{$service->title}}</h1>
+
+
+            {!!$service->des!!}
+            {{-- {{$service->des}} --}}
+
+          </div>
+          <a class=" mt-5 btn btn-primary" wire:navigate href="{{route('contact')}}"  data-bs-target="#applyLoan">Get a qoute<span style="font-size: 14px;" class="ms-2 fas fa-arrow-right"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="section-sm bg-tertiary">
+    <div class="container">
+        <div class="row justify-content-between">
+            {{-- <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <div class="footer-widget">
+                    <h5 class="mb-4 text-primary font-secondary">Service</h5>
+                    <ul class="list-unstyled">
+
+
+                        <li class="mb-2"><a href="service-details.html">Digital Marketing</a>
+                        </li>
+                        <li class="mb-2"><a href="service-details.html"></a>
+                        </li>
+                        <li class="mb-2"><a href="service-details.html">Logo Design</a>
+                        </li>
+                        <li class="mb-2"><a href="service-details.html">Graphic Design</a>
+                        </li>
+                        <li class="mb-2"><a href="service-details.html">SEO</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div> --}}
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <div class="footer-widget">
+                    <h5 class="mb-4 text-primary font-secondary">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a wire:navigate href="{{route('about')}}">About Us</a>
+                        </li>
+                        <li class="mb-2"><a wire:navigate href="#">Contact Us</a>
+                        </li>
+                        <li class="mb-2"><a wire:navigate href="{{route('blog')}}">Blog</a>
+                        </li>
+                        <li class="mb-2"><a wire:navigate href="{{route('team')}}">Team</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <div class="footer-widget">
+                    <h5 class="mb-4 text-primary font-secondary">Other Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="list-inline-item me-4"><a class="text-black" href="privacy-policy.html">Privacy Policy</a>
+                        </li>
+                        <li class="list-inline-item me-4"><a class="text-black" href="terms.html">Terms &amp; Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <div class="footer-widget">
+                    <h5 class="mb-4 text-primary font-secondary">Social Media</h5>
+                    <ul class="list-unstyled">
+                        <li class="list-inline-item me-4"><a class="text-black" href="#">Facebook</a>
+                        </li>
+                        <li class="list-inline-item me-4"><a class="text-black" href="#">Insta</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <div style="text-align: center">
+        All © Copyright reserved to <a href="{{route('home')}}">Adons</a> | 2023 - {{date('Y')}}
+    </div>
+</footer>
+
 
         @livewireScripts()
 

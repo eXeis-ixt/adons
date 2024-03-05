@@ -43,15 +43,13 @@
 					<p class="text-primary text-uppercase fw-bold mb-3">About Us</p>
 					<h2 class="h1 mb-4"> Adons</h2>
 					<div class="content pe-0 pe-lg-5">
-						<p>Welcome to Adons, your one-stop destination for cutting-edge solutions in web development, graphic design, and digital marketing. At Adons, we believe in the power of creativity, innovation, and technology to transform your digital presence and propel your business to new heights.
-
-                            With a team of skilled professionals, we specialize in crafting bespoke websites that not only captivate audiences but also drive results. Whether you're a startup looking to establish your online presence or an established enterprise aiming to enhance user experience, our web development services are tailored to meet your specific needs.</p>
-						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+						<p>
+                            Welcome to Adons, your one-stop destination for all your creative needs! We specialize in Graphic Design, Web Design, Digital Marketing, Video Editing, and more. With over 8 years of expertise, our skilled team of graphic designers ensures stunning visuals that captivate your audience. Our web designers, with 5 years of experience, craft intuitive and visually appealing websites that leave a lasting impression. Our digital marketers, backed by 10 years of proficiency, implement strategies that drive growth and maximize your online presence. And our video editors, with 7 years of skillful editing, bring your footage to life with seamless transitions and captivating storytelling. Trust Adons for exceptional services and let us elevate your brand to new heights</p>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-4 mt-5 mt-lg-0">
-				<img loading="lazy" decoding="async" src="images/about/about-11.jpg" alt="Business Loans &lt;br&gt; For Daily Expenses" class="rounded w-100">
+				<img loading="lazy" decoding="async" src="images/about/about-11.png" alt="Business Loans &lt;br&gt; For Daily Expenses" class="rounded w-100">
 			</div>
 		</div>
 	</div>
@@ -67,7 +65,7 @@
 			<div class="col-12">
 				<div class="section-title text-center">
 					<p class="text-primary text-uppercase fw-bold mb-3">Questions You Have</p>
-					<h1>See our portfolio</h1>
+					<h1>See our <a class="g-t" href="{{route('portfolio')}}" wire:navigate> Portfolio </a></h1>
 					<p class="mb-0">
 						<br>Our projects</p>
 				</div>
@@ -83,11 +81,17 @@
 				<div class="card bg-transparent border-0 text-center">
 					<div class="card-img">
 						<img loading="lazy" decoding="async" src="{{asset('storage/'.$p->image)}}" alt="Scarlet Pena" class="rounded w-100" width="300" height="332">
-						<ul class="card-social list-inline">
+
+                        @if ($p->url != '')
+                        <ul class="card-social list-inline">
 
 							<li class="list-inline-item"><a class="instagram" target="_blank" href="{{url($p->url)}}"><i class="fas fa-link"></i></a>
 							</li>
 						</ul>
+
+                        @endif
+
+
 					</div>
 					<div class="card-body">
 						<h3>{{$p->name}}</h3>
@@ -100,9 +104,61 @@
 
             @endif
 
+            <div class="col-12">
+                {{$portfolios->links()}}
+            </div>
 
 		</div>
 	</div>
+
+
+    {{-- Client Revdiw --}}
+
+
+    {{-- <div class="container mt-5 mb-5">
+
+        <div class="row g-2">
+
+
+            <div class="col-md-4">
+
+                <div class="card-1 p-3 text-center px-4">
+
+                    <div class="user-image">
+
+                <img src="https://i.imgur.com/w2CKRB9.jpg" class="rounded-circle" width="80"
+                        >
+
+                    </div>
+
+                    <div class="user-content">
+
+                        <h5 class="mb-0">Mark Smith</h5>
+                        <span>Web Developer</span>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                    </div>
+
+                    <div class="ratings">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+    </div> --}}
+
 </section>
 
 </main>

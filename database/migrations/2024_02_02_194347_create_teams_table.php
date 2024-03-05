@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('position');
+            $table->string('email');
+            $table->string('number');
+            $table->boolean('status')->default(true);
             $table->string('image')->nullable();
             $table->string('fb')->nullable();
             $table->string('tw')->nullable();

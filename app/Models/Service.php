@@ -11,12 +11,12 @@ class Service extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'slug', 'des', 'icon_class', 'short_des'
+        'title','image', 'slug', 'des', 'icon_class', 'short_des', 'status', 'keywords', 'meta_description'
     ];
 
     public function getExcerpt()
     {
-        return Str::limit(strip_tags($this->short_des), 40);
+        return Str::limit(strip_tags($this->short_des), 70);
     }
 
 }

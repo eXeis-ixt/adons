@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('clents', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('service');
-            $table->string('email');
-            $table->string('message');
+            $table->string('brand');
+            $table->string('image');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('clents');
     }
 };

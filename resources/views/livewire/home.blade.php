@@ -1,7 +1,7 @@
 <main>
 
 <div class="modal applyLoanModal fade" id="applyLoan" tabindex="-1" aria-labelledby="applyLoanLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    {{-- <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header border-bottom-0">
           <h4 class="modal-title" id="exampleModalLabel">How much do you need?</h4>
@@ -47,7 +47,7 @@
           </form>
         </div>
       </div>
-    </div>
+    </div> --}}
   </div>
 
   <section class="banner bg-tertiary position-relative overflow-hidden">
@@ -55,16 +55,23 @@
       <div class="row align-items-center justify-content-center">
         <div class="col-lg-6 mb-5 mb-lg-0">
           <div class="block text-center text-lg-start pe-0 pe-xl-5">
-            <h1 class="text-capitalize mb-4">Innovate. Excel. Succeed!</h1>
-            <p class="mb-4">Unlocking Potential, Igniting Excellence with Adons</p> <a type="button"
-              class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#applyLoan">See More<span style="font-size: 14px;" class="ms-2 fas fa-arrow-right"></span></a>
+            <h1 class="text-capitalize mb-4 g-t">Innovate. Excel. Succeed!</h1>
+            <p class="mb-4">Empowering your brand through creativity and technology. <br>
+
+                The solution to your brand</p> <a type="button"
+              class="btn btn-primary" wire:navigate href="{{route('service')}}"  data-bs-target="#applyLoan">Learn More<span style="font-size: 14px;" class="ms-2 fas fa-arrow-right"></span></a>
+
+              <a type="button"
+              class="btn btn-primary" target="_blank" href="https://wa.me/+8801905667600"  data-bs-target="#applyLoan">WhatsApp<span style="font-size: 14px;" class="ms-2 fa-brands fa-whatsapp"></span></a>
           </div>
         </div>
+
+
         <div class="col-lg-6">
           <div class="ps-lg-5 text-center">
-            <img loading="lazy" decoding="async"
-              src="images/about-us.png"
-              alt="banner image" class="w-100">
+            <img  decoding="async"
+              src="{{asset('images/about/undraw_remote_design_team_re_urdx.svg')}}"
+              alt="banner image" width="100%">
           </div>
         </div>
       </div>
@@ -116,13 +123,48 @@
     </div>
   </section>
 
+
+  @if ($clients->isNotEmpty())
+
+
+<section class=" py-5 py-xl-8">
+  <div class="container mb-5 mb-md-6">
+    <div class="row justify-content-md-center">
+      <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6 text-center">
+        <h2 class="mb-4 text-capitalize display-5 font-bold" style="font-weight: bold">Our local <span style="color: #5468fb;">&</span> international clients</h2>
+        <p class="text-secondary mb-4 mb-md-5"></p>
+        <hr class="w-50 mx-auto mb-0 text-secondary">
+      </div>
+    </div>
+  </div>
+  <div class="container overflow-hidden">
+    <div class="row gy-5 gy-md-6">
+        @foreach ($clients as $client)
+        <div class="col-6 col-md-3 align-self-center text-center">
+            <img class="gray" src="{{asset('storage/'.$client->image)}}" width="125" height="65" alt="{{$client->brand}}">
+            <p style="text-align: center;">{{$client->brand}}</p>
+        </div>
+
+        @endforeach
+
+
+
+
+    </div>
+  </div>
+</section>
+
+@endif
+
+
+
   <section class="section">
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-md-6">
           <div class="section-title pt-4">
             <p class="text-primary text-uppercase fw-bold mb-3">Our Services</p>
-            <h1>Our online services</h1>
+            <h1 class=" g-t">Our online services</h1>
             <p>What we have to offer</p>
           </div>
         </div>
@@ -138,7 +180,7 @@
             <div class="col-lg-4 col-md-6 service-item">
                 <a class="text-black" wire:navigate href="{{route('show',$service->slug)}}">
                   <div class="block"> <span class="colored-box text-center h3 mb-4">{{$x}}</span>
-                    <h3 class="mb-3 service-title">{{$service->title}}</h3>
+                    <h3 class="mb-3 service-title">{{$service->title}} Solution </h3>
                     <p class="mb-0 service-description">{{$service->getExcerpt()}}</p>
                   </div>
                 </a>
@@ -153,6 +195,8 @@
       </div>
     </div>
   </section>
+
+
 
 
 </main>

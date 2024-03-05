@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->string('author')->nullable;
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->text('content');
+            $table->string('meta_description')->nullable();
+            $table->string('keywords')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
         });
