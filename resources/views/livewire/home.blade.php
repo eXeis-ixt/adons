@@ -58,7 +58,7 @@
             <h1 class="text-capitalize mb-4 g-t">Innovate. Excel. Succeed!</h1>
             <p class="mb-4">Empowering your brand through creativity and technology. <br>
 
-                The solution to your brand</p> <a type="button"
+                The solution to your </p> <a type="button"
               class="btn btn-primary" wire:navigate href="{{route('service')}}"  data-bs-target="#applyLoan">Learn More<span style="font-size: 14px;" class="ms-2 fas fa-arrow-right"></span></a>
 
               <a type="button"
