@@ -1,4 +1,4 @@
-<main>
+{{-- <main>
 
     <section class="section">
         <div class="container">
@@ -15,7 +15,6 @@
                                         <div class="post-slider slider-sm rounded">
                                             @if ($blog->image != '')
 
-                                            {{-- < wire:navigate href="{{route('show.blog',$blog->slug)}}"> --}}
                                         <img   decoding="async" src="{{asset('storage/'.$blog->image)}}" alt="{{$blog->name}}">
 
                                             @else
@@ -25,17 +24,14 @@
 
                                         </div>
                                         <div class="pt-4">
-                                            {{-- <p class="mb-3">{{ \Carbon\Carbon::parse($blog->created_at)->format('d M, Y') }}</p> --}}
-                                            {{-- <p class="mb-3">{{$blog->scopePublished()}}</p> --}}
+
                                             @if ($blog->url != '')
                                             <h4 class=""><a class="text-black" style="text-align: center !important;" href="{{$blog->url}}" target="_blank">{{$blog->name}}</a></h4>
                                              @else
                                             <h4 class=""><a class="text-black" wrie:navigate style="text-align: center !important;" >{{$blog->name}}</a></h4>
 
                                             @endif
-                                            {{-- <p>Heading example Here is example of hedings. You can use this heading by following …</p>  --}}
-                                            {{-- <a wire:navigate href="{{route('show.blog',$blog->slug)}}" class="text-primary fw-bold" aria-label="Read the full article by clicking here">Read More</a> --}}
-                                        </div>
+                                           </div>
                                     </article>
                                 </div>
                             @endforeach
@@ -55,11 +51,51 @@
 
 
 
-                    <!-- Social -->
 
                 </div>
             </div>
         </div>
     </section>
 
+</main> --}}
+
+<main class=" container">
+    <div class="row position-relative">
+
+        @if ($portfolios->isNotEmpty())
+          @foreach ($portfolios as $p)
+
+
+    <div class="col-xl-3 col-lg-4 col-md-6 mt-4 shadow-sm">
+        <div class="card bg-transparent border-0 text-center">
+            <div class="card-img">
+                <img loading="lazy" decoding="async" src="{{asset('storage/'.$p->image)}}" alt="Scarlet Pena" class="rounded w-100" width="300" height="332">
+
+                @if ($p->url != '')
+                <ul class="card-social list-inline">
+
+                    <li class="list-inline-item"><a class="instagram" target="_blank" href="{{url($p->url)}}"><i class="fas fa-link"></i></a>
+                    </li>
+                </ul>
+
+                @endif
+
+
+            </div>
+            <div class="card-body">
+                <h3>{{$p->name}}</h3>
+                <p>Developed by Adons</p>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
+
+    @endif
+
+    <div class="col-12">
+        {{$portfolios->links()}}
+    </div>
+
+</div>
 </main>

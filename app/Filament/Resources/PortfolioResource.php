@@ -17,6 +17,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Symfony\Contracts\Service\Attribute\Required;
+use Illuminate\Support\Facades\Storage;
 
 class PortfolioResource extends Resource
 {
@@ -31,7 +32,7 @@ class PortfolioResource extends Resource
             ->schema([
                 TextInput::make('name')->required()->label('Project name')->placeholder('name of the project'),
                 TextInput::make('url')->url(),
-                FileUpload::make('image')->disk('public')->image()->imageEditor()->columnSpanFull()->label('Upload Image (Image should be 1920x1988)')->imageCropAspectRatio('0.96:1'),
+                FileUpload::make('image')->disk('public')->image()->imageEditor()->columnSpanFull()->label('Upload Image (Image should be 1920x1988)')->imageCropAspectRatio('0.96:1')->optimize('webp'),
             ]);
     }
 
@@ -48,6 +49,13 @@ class PortfolioResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()->after(function (Portfolio $record){
+                    if ($record->image) {
+                        Storage::disk('public')->delete($record->image);
+                     }
+
+
+                }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

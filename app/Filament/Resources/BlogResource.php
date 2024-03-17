@@ -25,6 +25,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class BlogResource extends Resource
 {
@@ -85,7 +86,13 @@ class BlogResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()->after(function (Blog $record){
+                    if ($record->image) {
+                        Storage::disk('public')->delete($record->image);
+                     }
+
+
+                }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
