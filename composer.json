@@ -11,6 +11,7 @@
         "php": "^8.1",
         "filament/filament": "3.2",
         "guzzlehttp/guzzle": "^7.2",
+        "icetalker/filament-chatgpt-bot": "^1.0",
         "joshembling/image-optimizer": "v1.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",

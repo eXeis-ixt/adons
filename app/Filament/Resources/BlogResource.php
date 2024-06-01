@@ -14,6 +14,8 @@ use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Wizard;
+use Filament\Forms\Components\Wizard\Step;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
@@ -37,32 +39,46 @@ class BlogResource extends Resource
     {
         return $form
             ->schema([
-                Tabs::make('Blog')->tabs([
-                    Tab::make('Details')->schema([
-                        TextInput::make('title') ->live()
-                        ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))->required(),
 
-                        TextInput::make('slug')->required(),
-                        // FileUpload::make('image'),
-                        FileUpload::make('image')->disk('public')->imageEditor()->columnSpan('full')->optimize('webp'),
+                    Wizard::make([
+                        Step::make('Title And Slug')->schema([
 
-                        RichEditor::make('content')->required()->label('Write your blog content')->columnSpanFull(),
-                        TextInput::make('author')->placeholder('Author'),
-                        Select::make('category_id')->options(Category::all()->pluck('name','id'))->label('Select a category'),
-                        Select::make('status')->options([
-                            1=> 'Active',
-                            0=>'Disabled'
-                        ]),
+                            TextInput::make('title') ->live(onBlur: true)
+                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))->required(),
 
+                            TextInput::make('slug')->required(),
 
-                    ]),
-                    Tab::make('SEO')->schema([
-                        Textarea::make('meta_description'),
-                    TextInput::make('keywords')->label('Use coma to separate')->placeholder('Keywords')
-                    ])
+                        ])->columnSpanFull(),
+
+                        Step::make('Details')->schema([
+                            TextInput::make('author')->placeholder('Author'),
+                            FileUpload::make('image')->disk('public')->imageEditor()->columnSpan('full')->optimize('webp'),
+
+                            RichEditor::make('content')->required()->label('Write your blog content')->columnSpanFull()->fileAttachmentsDisk('public'),
+                        ])->columnSpanFull(),
 
 
-                ])->columnSpanFull(),
+                        Step::make('Category')->schema([
+
+                            Select::make('category_id')->options(Category::all()->pluck('name','id'))->label('Select a category'),
+                            Select::make('status')->options([
+                                1=> 'Active',
+                                0=>'Disabled'
+                            ]),
+
+                        ])->columnSpanFull(),
+
+                        Step::make('SEO')->schema([
+                            Textarea::make('meta_description'),
+                            TextInput::make('keywords')->label('Use coma to separate')->placeholder('Keywords')
+                        ])->columnSpanFull(),
+
+                    ])->columnSpanFull(),
+
+
+
+
+
 
             ]);
     }
@@ -73,13 +89,13 @@ class BlogResource extends Resource
             ->columns([
                 ImageColumn::make('image'),
                 TextColumn::make('title')->searchable(),
-                TextColumn::make('slug'),
                 TextColumn::make('author')->searchable(),
                 SelectColumn::make('status')->options([
                     1=> 'Active',
                     0=>'Disabled'
-                ])
+                ]),
                 // TextColumn::make('category_id'),
+                TextColumn::make('created_at')->since(),
             ])
             ->filters([
                 //

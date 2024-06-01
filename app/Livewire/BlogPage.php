@@ -34,6 +34,8 @@ class BlogPage extends Component
             ->paginate(4);
 
         }
+
+
         // echo $this->category;
         $latests = Blog::where('status', 1)->orderBy('created_at', 'DESC')->take(3)->get();
 

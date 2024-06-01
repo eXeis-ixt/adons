@@ -6,6 +6,6 @@
 
 ## Table of Contents
 
-- [Project Name](#Adons)
+- [Project Name](#Developer)
   - [Developer](#Fahad_Bhuiyan)
   - [License](#mit)
